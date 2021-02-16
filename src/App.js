@@ -23,16 +23,16 @@ const App = () => {
   // console.log('songs:', songs)
   // console.log('playing:', playing)
   return (
-    <div  >
+    <div className="container">
       <div className="logo centercontent" >
-      <Image src="./logo.svg" width="100" />
+      <Image src="./logo.svg" width="300" />
       </div>
       <div className="centercontent" >
-        <Card style={{ width: '18rem' }}>
-          <Image width="200" height="200" src={`${server_url}/music/imgs/${playing.img}`} roundedCircle />
+        <Card style={{ width: '20rem', }}>
+          <Image  width="300" height="300" src={`${server_url}/music/imgs/${playing.img}`} roundedCircle />
           <Card.Body>
-            <Card.Title>{playing.name}</Card.Title>
-            <Card.Text>
+            <Card.Title className="title">{playing.name}</Card.Title>
+            <Card.Text className="singer">
               Singer: {playing.singer}
             </Card.Text>
             <audio controls>
@@ -48,7 +48,7 @@ const App = () => {
         </audio> */}
       </div>
       <div className="centercontent" >
-        <ListGroup>
+        <ListGroup className="list col-12">
         {
         songs.map(song => {
           return (

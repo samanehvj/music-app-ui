@@ -29,13 +29,16 @@ const App = () => {
       </div>
       <div className="centercontent" >
         <Card style={{ width: '20rem', }}>
-          <Image  width="300" height="300" src={`${server_url}/music/imgs/${playing.img}`} roundedCircle />
+          <Image className="img" width="300" height="300" src={`${server_url}/music/imgs/${playing.img}`} roundedCircle />
           <Card.Body>
             <Card.Title className="title">{playing.name}</Card.Title>
             <Card.Text className="singer">
               Singer: {playing.singer}
             </Card.Text>
-            <audio controls>
+            <Card.Text className="type">
+              Type: {playing.type}
+            </Card.Text>
+            <audio controls autoPlay className="">
               <source src={`${server_url}/music/mp3/${playing.mp3}`} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
@@ -48,11 +51,12 @@ const App = () => {
         </audio> */}
       </div>
       <div className="centercontent" >
-        <ListGroup className="list col-12">
+        <ListGroup className="list">
         {
         songs.map(song => {
+          let clsName = (song.id == playing.id) ? 'active' : ''; 
           return (
-            <ListGroup.Item key={song.id} onClick={() => setPlaying(song)}>{song.name}</ListGroup.Item>
+            <ListGroup.Item className={clsName} key={song.id} onClick={async () => await setPlaying(song)}>{song.name}</ListGroup.Item>
           )
         })
         }

@@ -25,7 +25,6 @@ const App = () => {
     setPlaying(song)
   }
 
-
   useEffect(() => {
    if(playing){
      setUpdatePlayer(Math.random);
@@ -41,13 +40,7 @@ const App = () => {
         <Card style={{ width: '20rem', }} key={updatePlayer}>
           <Image className="img" width="300" height="300" src={`${server_url}/music/imgs/${playing.img}`} roundedCircle />
           <Card.Body>
-            <Card.Title className="title">{playing.name}</Card.Title>
-            <Card.Text className="singer">
-              Singer: {playing.singer}
-            </Card.Text>
-            <Card.Text className="type">
-              Type: {playing.type}
-            </Card.Text>
+
             <audio controls autoPlay>
               <source src={`${server_url}/music/mp3/${playing.mp3}`} type="audio/mpeg" />
               Your browser does not support the audio element.
@@ -61,7 +54,10 @@ const App = () => {
         songs.map(song => {
           let clsName = (song.id == playing.id) ? 'active' : ''; 
           return (
-            <ListGroup.Item className={clsName} key={song.id} onClick={ () =>  changeSong(song)}>{song.name}</ListGroup.Item>
+            <>
+              <ListGroup.Item className={clsName} key={song.id} onClick={ () =>  changeSong(song)}><span>{song.name}</span>{song.singer}</ListGroup.Item>
+              <ListGroup.Item className="like">&#9825;</ListGroup.Item>
+            </>
           )
         })
         }

@@ -3,10 +3,12 @@ import "./App.css";
 
 import {Card, Image, ListGroup} from "react-bootstrap";
 
+//styling 
+import "./styles/logo.css";
 const App = () => {
   const [songs, setSongs] = useState([]);
   const [playing, setPlaying] = useState({id:1, name:"Hello", singer:"Adele", img:"adele.png", type:"Pop", mp3:"Adele.mp3"});
-  const server_url = `http://localhost:8765`;
+  const server_url = `https://musicapp-nodejs-mysql.herokuapp.com/`;
 
   const [updatePlayer, setUpdatePlayer] = useState(Math.random);
 
@@ -34,7 +36,7 @@ const App = () => {
   return (
     <div className="container">
       <div className="logo centercontent" >
-      <Image src="./logo.svg" width="300" />
+      <Image className="App-logo" id="logo" src="./logo.svg" />
       </div>
       <div className="centercontent" >
         <Card style={{ width: '20rem', }} key={updatePlayer}>

@@ -3,10 +3,18 @@ import "./App.css";
 
 import {Card, Image, ListGroup} from "react-bootstrap";
 
+
 //styling 
 import "./styles/logo.css";
+
+import socketIOClient from "socket.io-client";
+
+const ENDPOINT = "http://localhost:3000";
 const App = () => {
+  const socket = socketIOClient(ENDPOINT);
+
   const [songs, setSongs] = useState([]);
+  const [likeCount, setLikeCount] = useState([]);
   const [playing, setPlaying] = useState({id:1, name:"Hello", singer:"Adele", img:"adele.png", type:"Pop", mp3:"Adele.mp3"});
   const server_url = `https://musicapp-nodejs-mysql.herokuapp.com/`;
 
@@ -19,14 +27,28 @@ const App = () => {
         setPlaying(jsonRes.songs[0]);
         setSongs(jsonRes.songs);
     });
+
+    socket.on("connect", data => {
+      // setSocket(socket); 
+    });
+
+    socket.on("likeCount", data => {
+      setLikeCount(data);
+    });
+    
     return;
   }, []);
+
+  
 
   const changeSong = (song) => {
     console.log("LOL",song)
     setPlaying(song)
   }
 
+  const songLiked = (id)=>{
+    socket.emit('songLiked', id);
+  }
   useEffect(() => {
    if(playing){
      setUpdatePlayer(Math.random);
@@ -58,7 +80,7 @@ const App = () => {
           return (
             <>
               <ListGroup.Item className={clsName} key={song.id} onClick={ () =>  changeSong(song)}><span>{song.name}</span>{song.singer}</ListGroup.Item>
-              <ListGroup.Item className="like">&#9825;</ListGroup.Item>
+              <ListGroup.Item className="like" onClick={()=>songLiked(song.id)}>&#9825;</ListGroup.Item>
             </>
           )
         })

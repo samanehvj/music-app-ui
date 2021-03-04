@@ -33,6 +33,7 @@ const App = () => {
     });
 
     socket.on("likeCount", data => {
+      
       setLikeCount(data);
     });
     

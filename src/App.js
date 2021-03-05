@@ -9,10 +9,10 @@ import "./styles/logo.css";
 
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "http://localhost:3000";
-const server_url = "http://localhost:3000";
-// const ENDPOINT = "https://musicapp-nodejs-mysql.herokuapp.com/";
-// const server_url = `https://musicapp-nodejs-mysql.herokuapp.com/`;
+// const ENDPOINT = "http://localhost:3000";
+// const server_url = "http://localhost:3000";
+const ENDPOINT = "https://musicapp-nodejs-mysql.herokuapp.com/";
+const server_url = `https://musicapp-nodejs-mysql.herokuapp.com/`;
 
 const App = () => {
   const socket = socketIOClient(ENDPOINT);

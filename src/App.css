@@ -61,6 +61,17 @@ span {
   top: -60px;
   left: 270px;
   width: 30px;
+  
+}
+.heart-icon{
+  color: red;
+  text-align: center;
+}
+
+.like-count {
+  font-size: 20px;
+  text-align: center;
+  color: #349682;
 }
 
 

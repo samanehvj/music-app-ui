@@ -16,7 +16,6 @@ const server_url = `https://musicapp-nodejs-mysql.herokuapp.com`;
 
 const App = () => {
   const socket = socketIOClient(ENDPOINT);
-
   const [songs, setSongs] = useState([]);
   const [likeCount, setLikeCount] = useState([]);
   const [sortedList, setSortedList] = useState([]);
@@ -102,7 +101,7 @@ const App = () => {
             return (
               <div key={`item_${song.id}`}>
                 <ListGroup.Item className={clsName} key={`song_${song.id}`} onClick={() =>  changeSong(song)}><span>{song.name}</span>{song.singer}</ListGroup.Item>
-                <ListGroup.Item className="like" key={`like_${song.id}`} onClick={() => songLiked(song.id)}>&#9825;</ListGroup.Item>
+                <ListGroup.Item className="like" key={`like_${song.id}`} onClick={() => songLiked(song.id)}><span className="like-count">{song.likeCount}</span> <span className="heart-icon">&#9825;</span></ListGroup.Item>
               </div>
             )
           })
